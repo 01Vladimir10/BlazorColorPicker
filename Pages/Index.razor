@@ -1,0 +1,14 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+<input type="range" @bind="_size" min="0" max="100" @bind:event="oninput">
+<input type="text" @bind="@_color">
+<div class="d-flex justify-content-center">
+    <ColorPickerComponent Size="@_size" @bind-Value="_color" OutputFormat="ColorFormat.Hex"/>
+</div>
+@code {
+
+    private double _size = 22;
+    private string _color = "#ffffff";
+
+}

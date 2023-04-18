@@ -1,0 +1,32 @@
+@using System.Globalization
+@using System.Text.RegularExpressions
+<div class="color-picker"
+     style="--color-picker-width: @(Size * UnitPixel)px;
+            --cp-unit: @(UnitPixel)px; 
+            --cp-hue: @_selectedHsvColor.Hue; 
+            --cp-saturation: @_selectedHsvColor.Saturation; 
+            --cp-value: @_selectedHsvColor.Value; 
+            --cp-color: @_baseSelectedColor.ToCss(); 
+            --cp-opacity: @_selectedHsvColor.Opacity;
+            --cp-selected-color-rgb: @_selectedColorRgb.Red, @_selectedColorRgb.Green, @_selectedColorRgb.Blue;
+            --cp-selected-color: @_selectedColorRgb.ToCss();">
+    <div class="color-picker__window"
+         @onmousedown="() => _isMovingInWindow = true"
+         @onmouseup="() => _isMovingInWindow = false"
+         @onmousemove="OnMouseMoveInWindow"
+         @onclick="MovePickerPointer">
+        <span class="color-picker__window--indicator"></span>
+    </div>
+    <div class="color-picker__body">
+        <div class="color-picker__preview">
+        </div>
+        <div class="color-picker__sliders">
+            <div class="color-picker__hue">
+                <input type="range" @bind="Hue" @bind:event="oninput" min="0" max="359" step="1">
+            </div>
+            <div class="color-picker__opacity">
+                <input type="range" @bind="Opacity" @bind:event="oninput" min="0" max="1" step="0.001">
+            </div>
+        </div>
+    </div>
+</div>
